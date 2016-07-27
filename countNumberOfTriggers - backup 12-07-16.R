@@ -1,5 +1,3 @@
-##################test##########
-
 #Data Frame containing all data
 allData = read.csv("C:/Users/gagm2737/Documents/SpiderOak Hive/DONNEES_FILAIRES/WORKINPROGRESS/5capteurs.csv")
 
