@@ -16,24 +16,46 @@ colnames(endData) <- c('No_Test', 'sensor', 'statut', 'heure')
 previous = 0
 current = 0
 
+counter = 1
+
 #Loop over all EXPs
-for (i in 1:length(expList)){
+for (indexExp in 1:length(expList)){
   #Extract data for the current EXP
-  expData = allData[grep(expList[i], allData$No_Test),]
+  expData = allData[grep(expList[indexExp], allData$No_Test),]
   
   #for each sensors (excluding first column (No_Test))
-  for (j in 2:length(expData[1,])){
-    
-    #for each entry, starting at second line (previous will have the 1rst line value) 
-    for (k in 2:length(expData[,1])){
-      previous <- expData[k-1,j]  
-      current <- expData[k,j]
-      
+  for (indexSensor in 2:length(expData[1,])){
+
+    #for each entry, starting at second line (previous will have the 1rst line value)
+    for (indexLine in 2:length(expData[,1])){
+      previous <- expData[indexLine - 1, indexSensor]
+      current <- expData[indexLine, indexSensor]
+
       #instead, write info in new data
-      if (previous != current){
-        print(c("AAAAAAAAAAAAAAAAAAA ", j, k))
+      if (current != previous){
+        #print(c("AAAAAAAAAAAAAAAAAAA ", indexSensor, indexLine))
+
+        tuple <- c(expList[indexExp],
+                   colnames(expData)[indexSensor],
+                   current,
+                   indexLine
+                   #time
+                   )
+
+        endData[counter,] <- tuple
+        counter = counter + 1
+
       }
     }
   }
   
 }
+
+
+
+
+#ça ça fonctionne
+#endData[1,] <- tuple
+
+
+
