@@ -39,7 +39,6 @@ for (indexExp in 1:length(expList)){
                    colnames(expData)[indexSensor],
                    current,
                    indexLine
-                   #time
                    )
 
         endData[counter,] <- tuple
@@ -50,12 +49,3 @@ for (indexExp in 1:length(expList)){
   }
   
 }
-
-
-
-
-#ça ça fonctionne
-#endData[1,] <- tuple
-
-
-

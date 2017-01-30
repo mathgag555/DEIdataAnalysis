@@ -1,6 +1,6 @@
 #Data Frame containing all data
-inputFile = "C:/Users/gagm2737/Documents/SpiderOak Hive/DONNEES_FILAIRES/WORKINPROGRESS/AllEXPs-sansEXP19et20-finEXP18corrigee-filtres.csv"
-outputFile = "C:/Users/gagm2737/Documents/SpiderOak Hive/DONNEES_FILAIRES/WORKINPROGRESS/outputDebitmetrev3.csv"
+inputFile = "C:/Users/gagm2737/Documents/SpiderOak Hive/DONNEES_FILAIRES/05. APRÈS filtres/AllEXPs-27janv2017-apresFiltres.csv"
+outputFile = "C:/Users/gagm2737/Documents/SpiderOak Hive/DONNEES_FILAIRES/06. DEBITMETRES BINARISES/outputDebitmetre27janv2017.csv"
 
 allData = read.csv(inputFile)
 expList <- c('EXP18', 'EXP21', 'EXP22', 'EXP23', 'EXP24', 'EXP25', 'EXP26', 'EXP27', 'EXP28', 'EXP29', 'EXPDTA16', 'EXPDTA17',
@@ -9,13 +9,10 @@ expList <- c('EXP18', 'EXP21', 'EXP22', 'EXP23', 'EXP24', 'EXP25', 'EXP26', 'EXP
 
 
 ###Ajouter une premiere ligne qui contient les titres des colonnes
-write.table(colnames(expData), file = outputFile, 
-            row.names = FALSE, qmethod = "double", dec = ".", sep = ",", eol = "") 
-
-write("", file = outputFile, append = TRUE, sep = ",")
-###BUG CONNUS : 
-#-ajoute "x" au début de la premiere ligne
-#-ne met pas de virgule entre chaque titre
+write(colnames(expData), 
+      file = outputFile,
+      ncolumns = length(colnames(expData)),
+      sep = ",")
 
 #Loop over all EXPs
 for (i in 1:length(expList)){  
